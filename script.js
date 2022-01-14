@@ -43,6 +43,8 @@ function setup() {
 function draw() {
   if (spelStatus === SPELEN) {
 
+  }
+
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm
 
