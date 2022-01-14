@@ -8,7 +8,7 @@ Gemaakt door:
 
 Basis: uitleg, spelen, afgaan en punten
 - [x] maak index.html, style.css en script.js met canvas
-- [ ] Maak 3D blok
+- [x] Maak 3D blok
 - [ ] Maak blokken schaalbaar (Zodat je vanaf een dataset een figuur op beeld krijgt)
 - [ ] Maak Camera beweegbaar (wss heel erg moeilijk)
 - [ ] Maak blokken breekbaar
