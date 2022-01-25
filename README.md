@@ -10,7 +10,7 @@ Basis: uitleg, spelen, afgaan en punten
 - [x] maak index.html, style.css en script.js met canvas
 - [x] Maak 3D blok
 - [ ] Maak blokken schaalbaar (Zodat je vanaf een dataset een figuur op beeld krijgt)
-- [ ] Maak Camera beweegbaar (wss heel erg moeilijk)
+- [x] Maak Camera beweegbaar (wss heel erg moeilijk)
 - [ ] Maak blokken breekbaar
 - [ ] Check of het blok goed is en reageer goed erop
 - [ ] Berekenen waar de muis wijst
@@ -20,6 +20,7 @@ Basis: uitleg, spelen, afgaan en punten
 
 Extra (Ik weet nog niet of ik dit wil implementeren):
 - [ ] Timer
+- [ ] Maak camera beter (zoom en shit)
 
 Uitbreiding (Gaat alleen doen als ik geen leven heb): 
 - [ ] Legacy 2D mode
