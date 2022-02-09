@@ -30,7 +30,7 @@ function newCubeMakePls(x, y, z, s) {
 
 var cubeSize;
 function loadcube(w, d, h, s) {
-  cubeSize = [w, d, h];
+  cubeSize = [w, d, h, s];
   for(var i = 1; i < w + 1; i++){
     for(var j = 1; j < d + 1; j++){
       for(var k = 1; k < h + 1; k++){
@@ -44,7 +44,7 @@ function loadcube(w, d, h, s) {
 function drawBlock() {
   // Making it look kinda good
   fill('white');
-  strokeWeight('10');
+  strokeWeight('4');
 
   // Extra stuff
   translate(640, 360);
@@ -53,7 +53,11 @@ function drawBlock() {
   var d = cubeSize[1];
   var h = cubeSize[2];
   for(var n = 0; n < cubes.length; n++){
-    //if((0 <= n && n <= 24) || n == cubes.length - 1){
+    if(
+         (0 <= n && n <= d*h-1)                || (w*h*(d-1) <= n && n <= w*d*h)                      // De eerste en laatste vlak voor de x
+      || (-1 <= n % (w*h) && n % (w*h) <= h-1) || (0 <= n % (w*h)-w*(h-1) && n % (w*h)-w*(h-1) <= h)  // De eerste en laatste vlak voor de y
+      || (d-1 == n % d) || (0 == n % d)
+    ){
       // Going through all of the nodes and drawing them
       for(var e = 0; e < cubes[n].length; e++) {
         point(cubes[n][e][0], cubes[n][e][1]);
@@ -62,16 +66,7 @@ function drawBlock() {
       for(var f = 0; f < edges.length; f++) {
         line(cubes[n][edges[f][0]][0], cubes[n][edges[f][0]][1], cubes[n][edges[f][1]][0], cubes[n][edges[f][1]][1]);
       }
-    //}
-
-    /*// Going through all of the nodes and drawing them
-    for(var e = 0; e < cubes[n].length; e++) {
-        point(cubes[n][e][0], cubes[n][e][1]);
     }
-    // Going through all of the edges and drawing them
-    for(var f = 0; f < edges.length; f++) {
-        line(cubes[n][edges[f][0]][0], cubes[n][edges[f][0]][1], cubes[n][edges[f][1]][0], cubes[n][edges[f][1]][1]);
-    }*/
   }
 }
 
@@ -112,7 +107,7 @@ mouseDragged = function() {
 function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
-  loadcube(5, 5, 5, 50);
+  loadcube(4, 4, 4, 50);
 }
 
 /**
@@ -123,5 +118,5 @@ function draw() {
     background('yellow');
     drawBlock();
     fill('black');
-    text((pmouseX - mouseX), 20, 20);
+    text('yuh', 20, 20);
 }

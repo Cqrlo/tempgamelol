@@ -22,7 +22,7 @@ Basis: uitleg, spelen, afgaan en punten
 Extra (Ik weet nog niet of ik dit wil implementeren):
 - [ ] Timer
 - [ ] Maak camera beter (zoom en shit)
-- [ ] Optimalisatie met draw
+- [x] Optimalisatie met draw
 
 Uitbreiding (Gaat alleen doen als ik geen leven heb): 
 - [ ] Legacy 2D mode
