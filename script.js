@@ -52,11 +52,12 @@ function drawBlock() {
   var w = cubeSize[0];
   var d = cubeSize[1];
   var h = cubeSize[2];
+  // Goes through all of the cubes and draw the dots and lines
   for(var n = 0; n < cubes.length; n++){
     if(
          (0 <= n && n <= d*h-1)                || (w*h*(d-1) <= n && n <= w*d*h)                      // De eerste en laatste vlak voor de x
       || (-1 <= n % (w*h) && n % (w*h) <= h-1) || (0 <= n % (w*h)-w*(h-1) && n % (w*h)-w*(h-1) <= h)  // De eerste en laatste vlak voor de y
-      || (d-1 == n % d) || (0 == n % d)
+      || (d-1 == n % d)                        || (0 == n % d)                                        // De eerste en laatste vlak voor de z
     ){
       // Going through all of the nodes and drawing them
       for(var e = 0; e < cubes[n].length; e++) {
@@ -65,6 +66,60 @@ function drawBlock() {
       // Going through all of the edges and drawing them
       for(var f = 0; f < edges.length; f++) {
         line(cubes[n][edges[f][0]][0], cubes[n][edges[f][0]][1], cubes[n][edges[f][1]][0], cubes[n][edges[f][1]][1]);
+      }
+    }
+  }
+  
+  // Goes through all of the cubes and draw the squares
+  // This for loop is the same as the one above, but because the squares have to be drawn over the lines and not inbetween it needs to be in a seperate loop
+  for(var n = 0; n < cubes.length; n++){
+    fill('black');
+    textSize(50);
+    text(w, 20, 20, 40)
+    fill('white');
+    if(cubes[w + (0,5 * w - 1)][3][2] >= cubes[w + 0.5 * h + 1 + w * h * (d-1)][3][2]){
+      if(0 <= n && n <= d*h-1){
+        // De eerste vlak voor de x
+        for(var g = 0; g < 6; g++) {
+          quad(cubes[n][0][0], cubes[n][0][1], cubes[n][1][0], cubes[n][1][1], cubes[n][3][0], cubes[n][3][1], cubes[n][2][0], cubes[n][2][1]);
+        }
+      }
+    } else {
+      if(w*h*(d-1) <= n && n <= w*d*h){ 
+        // De laatste vlak voor de x
+        for(var g = 0; g < 6; g++) {
+          quad(cubes[n][6][0], cubes[n][6][1], cubes[n][7][0], cubes[n][7][1], cubes[n][5][0], cubes[n][5][1], cubes[n][4][0], cubes[n][4][1]);
+        }
+      }
+    }
+    if(cubes[w*h+1][5][2] > cubes[w*h*(d-(d*0.5))-3][7][2]){
+      if(-1 <= n % (w*h) && n % (w*h) <= h-1){
+        // De eerste vlak voor de y
+        for(var g = 0; g < 6; g++) {
+          quad(cubes[n][0][0], cubes[n][0][1], cubes[n][1][0], cubes[n][1][1], cubes[n][5][0], cubes[n][5][1], cubes[n][4][0], cubes[n][4][1]);
+        }
+      }
+    } else {
+      if(0 <= n % (w*h)-w*(h-1) && n % (w*h)-w*(h-1) <= h){
+        // De laatste vlak voor de y
+        for(var g = 0; g < 6; g++) {
+          quad(cubes[n][2][0], cubes[n][2][1], cubes[n][3][0], cubes[n][3][1], cubes[n][7][0], cubes[n][7][1], cubes[n][6][0], cubes[n][6][1]);
+        }
+      }
+    }
+    if(cubes[w*h+w][7][2] < cubes[w*h+w*(h*0.5)-1][7][2]){
+      if(d-1 == n % d){
+        // De eerste vlak voor de z
+        for(var g = 0; g < 6; g++) {
+          quad(cubes[n][1][0], cubes[n][1][1], cubes[n][3][0], cubes[n][3][1], cubes[n][7][0], cubes[n][7][1], cubes[n][5][0], cubes[n][5][1]);
+        }
+      }
+    } else {
+      if(0 == n % d){
+        // De laatste vlak voor de z
+        for(var g = 0; g < 6; g++) {
+          quad(cubes[n][0][0], cubes[n][0][1], cubes[n][2][0], cubes[n][2][1], cubes[n][6][0], cubes[n][6][1], cubes[n][4][0], cubes[n][4][1]);
+        }
       }
     }
   }
@@ -117,6 +172,4 @@ function setup() {
 function draw() {
     background('yellow');
     drawBlock();
-    fill('black');
-    text('yuh', 20, 20);
 }
